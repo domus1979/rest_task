@@ -1,21 +1,19 @@
 package by.dvn.rest_task;
 
-import java.util.GregorianCalendar;
-import java.util.List;
-
-import javax.sql.DataSource;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-
-import org.springframework.boot.builder.SpringApplicationBuilder;
+//import java.util.GregorianCalendar;
+//import java.util.List;
+//
+//import javax.sql.DataSource;
+//
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.context.ApplicationContext;
+//import org.springframework.boot.builder.SpringApplicationBuilder;
 //import org.springframework.context.annotation.AnnotaionConfigApplicationContext;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import by.dvn.DAO.EmployeeException;
-import by.dvn.service.ServiceProject;
+//import by.dvn.service.ServiceProject;
 
 @SpringBootApplication
 public class RestTaskApplication {

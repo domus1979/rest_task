@@ -2,6 +2,7 @@ package by.dvn.source;
 
 import java.util.Date;
 
+import org.springframework.data.relational.core.mapping.Column;
 //import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.stereotype.Component;
 
@@ -13,49 +14,29 @@ import javax.persistence.Id;
 
 @Component
 @Entity
-//@Table(name = "employee")
 public class Employee {
 
 	@Id
 	@GeneratedValue
-//	@Column(name = "employee_id")
+	@Column(value = "id")
 	private Integer id;
-	
-//	@Column(name = "first_name")
+	@Column(value = "firstName")
 	private String firstName = "";
-	
-//	@Column(name = "last_name")
+	@Column(value = "lastName")
 	private String lastName = "";
-	
-//	@Column(name = "department_id")
+	@Column(value = "departmentId")
 	private Integer departmentId;
-	
-//	@Column(name = "job_title")
+	@Column(value = "jobTitle")
 	private String jobTitle = "";
-	
-//	@Column(name = "gender")
+	@Column(value = "gender")
 	private Sex gender;
-	
-//	@Temporal(TemporalType.DATE)
-//	@Column(name = "date_of_birth")
+	@Column(value = "dateOfBirth")
 	private Date dateOfBirth;
 	
 	// Constructor`s
 	
 	Employee() {}
 
-//	Employee(Integer id, String firstName, String lastName) {
-//		
-//		this.id = id;
-//		this.firstName = firstName;
-//		this.lastName = lastName;
-//		this.departmentId = 1;
-//		this.jobTitle = "";
-//		this.gender = Sex.MALE;
-//		this.dateOfBirth = new Date(0);
-//		
-//	}
-	
 	public Employee(Integer id, String firstName, String lastName, Integer departmentId, String jobTitle, Sex gender, Date dateOfBirth) {
 		
 		this.id = id;
@@ -68,6 +49,41 @@ public class Employee {
 		
 	}
 	
+	public Employee(Integer id, String firstName, String lastName, Integer departmentId, String jobTitle, String gender, Date dateOfBirth) {
+		
+		this.id = id;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.departmentId = departmentId;
+		this.jobTitle = jobTitle;
+		this.gender = (gender.equals("FEMALE") == true) ? Sex.FEMALE : Sex.MALE;
+		this.dateOfBirth = dateOfBirth;
+		
+	}
+
+	public Employee(String firstName, String lastName, Integer departmentId, String jobTitle, Sex gender, Date dateOfBirth) {
+		
+		this.id = 0;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.departmentId = departmentId;
+		this.jobTitle = jobTitle;
+		this.gender = gender;
+		this.dateOfBirth = dateOfBirth;
+		
+	}
+
+	public Employee(String firstName, String lastName, Integer departmentId, String jobTitle, String gender, Date dateOfBirth) {
+		
+		this.id = 0;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.departmentId = departmentId;
+		this.jobTitle = jobTitle;
+		this.gender = (gender.equals("FEMALE") == true) ? Sex.FEMALE : Sex.MALE;
+		this.dateOfBirth = dateOfBirth;
+		
+	}
 	// Geter`s
 	
 	public Integer getId() {
@@ -124,12 +140,49 @@ public class Employee {
 		this.dateOfBirth = dateOfBirth;
 	}
 
-	// Others
+	// Redefine
 	
 	@Override
 	public String toString() {
 		return String.format(
-			"Employee[id=%d, firstName='%s', lastName='%s', gender=%s]",
-			this.id, this.firstName, this.lastName, (this.gender == Sex.FEMALE ? "FEMALE" : "MALE"));
+			"Employee[id=%d, firstName='%s', lastName='%s', date_of_birth=%s]",
+			this.id, this.firstName, this.lastName, this.dateOfBirth);
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((dateOfBirth == null) ? 0 : dateOfBirth.hashCode());
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (dateOfBirth == null) {
+			if (other.dateOfBirth != null)
+				return false;
+		} else if (!dateOfBirth.equals(other.dateOfBirth))
+			return false;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		return true;
 	}
 }

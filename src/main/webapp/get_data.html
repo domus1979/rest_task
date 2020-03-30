@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ru">
+<head>
+	
+	<meta charset="utf-8">
+
+	<title>Тест REST сервиса. Получение данных.</title>
+	<meta name="description" content="Тест REST сервиса.">
+	<meta name="DVN" content="dvn.by">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="ajax.js"></script>
+
+</head>
+
+<body>
+	<h1 align = "center"> Чтение данных о сотрудниках </h1>
+	<form method="GET" id="ajax_form" action="" align="center">
+		<table align=center>
+			<tr>
+				<td> Номер </tb>
+				<td> <input type="text" name="employee_id" placeholder="Номер сотрудника: " /> </tb>
+			</tr>
+			<tr>
+				<td align="center"> <input type="button" id="readNote" value="Прочитать запись" /> </td>
+				<td align="center"> <input type="button" id="readAllNotes" value="Прочитать все записи" /> </td>
+			</tr>
+		</table>
+	</form>
+
+	<br>
+
+	<div align = "center" id="result_form">
+	</div>
+	 
+</body>
+</html>
